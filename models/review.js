@@ -8,6 +8,9 @@ const reviewSchema = new Schema(
     testimonial: {
       type: String,
     },
+    imageUrl: {
+      type: String,
+    },
   },
   { versionKey: false }
 );
