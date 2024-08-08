@@ -14,6 +14,12 @@ const storeSchema = new Schema(
     phone: {
       type: String,
     },
+    open: {
+      type: String,
+    },
+    close: {
+      type: String,
+    },
     rating: {
       type: Number,
     },
