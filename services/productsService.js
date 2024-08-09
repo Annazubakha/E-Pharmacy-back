@@ -23,7 +23,6 @@ export const listProducts = async (query) => {
     return {
       products,
       totalPages,
-      page,
     };
   } catch (error) {
     return error;
