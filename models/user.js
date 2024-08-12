@@ -46,6 +46,13 @@ export const loginSchema = Joi.object({
   password: Joi.string().required(),
 });
 
+export const refreshSchema = Joi.object({
+  token: Joi.string().required().messages({
+    "any.required": "token is required",
+    "string.base": "token should be a text string",
+  }),
+});
+
 userSchema.post("save", handleMongooseError);
 
 export const User = model("user", userSchema);
