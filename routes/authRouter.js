@@ -4,6 +4,7 @@ import {
   registerController,
   loginController,
   logOutController,
+  refreshController,
 } from "../controllers/authControllers.js";
 import { authenticate } from "../middlewares/authenticate.js";
 import { loginSchema, registerSSchema } from "../models/user.js";
@@ -13,5 +14,6 @@ const authRouter = express.Router();
 authRouter.post("/login", validateBody(loginSchema), loginController);
 authRouter.post("/register", validateBody(registerSSchema), registerController);
 authRouter.post("/logout", authenticate, logOutController);
+authRouter.post("/refresh", authenticate, refreshController);
 
 export default authRouter;

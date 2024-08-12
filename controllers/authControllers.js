@@ -78,3 +78,31 @@ export const logOutController = async (req, res, next) => {
     next(error);
   }
 };
+
+export const refreshController = async (req, res, next) => {
+  try {
+    const { token } = req.body;
+    if (!token) {
+      throw HttpError(400, "Token is required");
+    }
+    let decoded;
+    try {
+      decoded = jwt.verify(token, SECRET_KEY);
+    } catch (err) {
+      throw HttpError(401, "Invalid token");
+    }
+    const user = await User.findById(decoded.id);
+    if (!user) {
+      throw HttpError(404, "User was not found");
+    }
+    res.json({
+      user: {
+        email: user.email,
+        name: user.name,
+        phone: user.phone,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
