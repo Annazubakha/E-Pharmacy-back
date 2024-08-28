@@ -62,6 +62,7 @@ export const loginController = async (req, res, next) => {
         email: user.email,
         name: user.name,
         phone: user.phone,
+        cart: user.cart,
       },
     });
   } catch (error) {

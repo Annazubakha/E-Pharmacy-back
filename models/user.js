@@ -1,9 +1,9 @@
-import { Schema, model } from "mongoose";
+import { Schema, Types, model } from "mongoose";
 import { handleMongooseError } from "../helpers/handleMongooseError.js";
 import Joi from "joi";
 
-const emailPattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-const phonePattern = /^\+?\d{12}$/;
+export const emailPattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+export const phonePattern = /^\+?\d{12}$/;
 
 const userSchema = new Schema(
   {
@@ -26,6 +26,27 @@ const userSchema = new Schema(
       required: [true, "Phone is required"],
       match: [phonePattern, "Invalid phone number format"],
     },
+    cart: [
+      {
+        productId: { type: Types.ObjectId, ref: "product" },
+        photo: {
+          type: String,
+        },
+        name: {
+          type: String,
+        },
+        suppliers: {
+          type: String,
+        },
+        stock: {
+          type: String,
+        },
+        price: {
+          type: String,
+        },
+        quantity: { type: Number, default: 0 },
+      },
+    ],
     token: {
       type: String,
       default: null,
