@@ -97,6 +97,7 @@ export const refreshController = async (req, res, next) => {
       throw HttpError(404, "User was not found");
     }
     res.json({
+      token,
       user: {
         email: user.email,
         name: user.name,

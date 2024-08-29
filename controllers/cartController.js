@@ -4,17 +4,26 @@ import { Order } from "../models/order.js";
 
 export const getAllCart = async (req, res) => {
   const { _id } = req.user;
-
   try {
     const user = await User.findById(_id).populate("cart.productId");
     if (!user) return res.status(404).json({ message: "User not found" });
 
-    res.status(200).json(user.cart);
+    const formattedProduct = user.cart.map((item) => ({
+      _id: item._id,
+      productId: item.productId._id,
+      photo: item.productId.photo,
+      name: item.productId.name,
+      suppliers: item.productId.suppliers,
+      stock: item.productId.stock,
+      price: item.productId.price,
+      quantity: item.quantity,
+    }));
+
+    res.status(200).json(formattedProduct);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
-
 export const updateCart = async (req, res) => {
   const { productId, quantity } = req.body;
   const userId = req.user._id;

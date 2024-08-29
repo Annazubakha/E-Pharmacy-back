@@ -29,21 +29,21 @@ const userSchema = new Schema(
     cart: [
       {
         productId: { type: Types.ObjectId, ref: "product" },
-        photo: {
-          type: String,
-        },
-        name: {
-          type: String,
-        },
-        suppliers: {
-          type: String,
-        },
-        stock: {
-          type: String,
-        },
-        price: {
-          type: String,
-        },
+        // photo: {
+        //   type: String,
+        // },
+        // name: {
+        //   type: String,
+        // },
+        // suppliers: {
+        //   type: String,
+        // },
+        // stock: {
+        //   type: String,
+        // },
+        // price: {
+        //   type: String,
+        // },
         quantity: { type: Number, default: 0 },
       },
     ],
