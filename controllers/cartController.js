@@ -86,7 +86,7 @@ export const checkOut = async (req, res) => {
           name: product.name,
           price: product.price,
           quantity: item.quantity,
-          totalPrice,
+          totalAmount,
         };
       })
     );
